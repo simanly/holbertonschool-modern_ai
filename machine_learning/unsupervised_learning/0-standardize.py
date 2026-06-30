@@ -3,7 +3,6 @@
 Module for feature standardization using Scikit-learn
 '''
 from sklearn import preprocessing
-import numpy as np
 
 
 def Standardize(X):
