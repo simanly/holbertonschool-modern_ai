@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-This module provides a function to evaluate the optimal number of clusters
-for K-Means using inertia (Elbow method) and Silhouette scores.
+Evaluates the optimal number of clusters for K-Means using
+inertia (Elbow method) and Silhouette scores.
 """
 from sklearn import metrics
 K_Means = __import__('2-k_means').K_Means
@@ -9,7 +9,7 @@ K_Means = __import__('2-k_means').K_Means
 
 def optimal_k(X, max_clusters, random_state):
     """
-    Evaluates K-Means clustering quality using silhouette scores and inertia.
+    Evaluates K-Means clustering quality.
 
     Args:
         X (numpy.ndarray): Tabular data of shape (n_samples, n_features).
@@ -26,14 +26,12 @@ def optimal_k(X, max_clusters, random_state):
     inertias = []
     silhouette_scores = []
 
-    # Evaluate for cluster numbers from 2 up to max_clusters (inclusive)
     for k in range(2, max_clusters + 1):
         kmeans = K_Means(X, k, random_state)
 
         ks.append(k)
         inertias.append(kmeans.inertia_)
 
-        # Calculate silhouette score for the current clustering
         score = metrics.silhouette_score(X, kmeans.labels_)
         silhouette_scores.append(score)
 
